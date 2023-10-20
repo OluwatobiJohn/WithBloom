@@ -16,9 +16,15 @@ const Register: React.FC = () => {
 
   const handleRegister = async (email: string, password: string) => {
     if (!validateEmail(email)) {
-      toast.error("Please enter a valid email address");
+      if (email.length === 0) {
+        toast.error("Enter an Email Address");
+      } else {
+        toast.error("Please enter a valid email address");
+      }
     } else if (!validatePassword(password)) {
-      if (password.length < 6) {
+      if (password.length === 0) {
+        toast.error("Enter a Password");
+      } else if (password.length < 6) {
         toast.error("Password must be at least 6 characters long");
       } else {
         toast.error(

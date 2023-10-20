@@ -5,11 +5,22 @@ import Link from "next/link";
 import usePasswordVisibility from "@/helpers/utils";
 import useAuth from "@/hooks/useAuth";
 import Spinner from "../components/Spinner";
+import { toast } from "react-toastify";
 
 const Login: React.FC = () => {
   const { passwordVisible, togglePasswordVisibility } = usePasswordVisibility();
   const { password, setPassword, email, setEmail, loading, loginUser } =
     useAuth();
+
+  const handleLogin = async (email: string, password: string) => {
+    if (email.length === 0) {
+      toast.error("Enter your Email Address");
+    } else if (password.length === 0) {
+      toast.error("Enter your Password");
+    } else {
+      loginUser(email, password);
+    }
+  };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -88,8 +99,7 @@ const Login: React.FC = () => {
                   className="w-full h-12 bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
                   onClick={(e) => {
                     e.preventDefault();
-                    console.log(email, password);
-                    loginUser(email, password);
+                    handleLogin(email, password);
                   }}
                 >
                   {loading ? <Spinner /> : "Login"}
