@@ -21,7 +21,7 @@ const TopBar: React.FC<TopBarProps> = ({ handleLogOut, toggleMobile }) => {
     });
   }, []);
   return (
-    <div className="bg-white p-4 text-white fixed top-0 left-0 w-full shadow-2xl h-[70px]">
+    <div className="bg-white p-4 text-white fixed top-0 left-0 w-full shadow-2xl h-[70px] z-10">
       <div className="flex flex-row items-center justify-between">
         {/* Logo */}
 

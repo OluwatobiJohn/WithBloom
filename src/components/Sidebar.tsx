@@ -32,7 +32,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleOut, isMobile }) => {
             : "fixed hidden md:block bg-gray-800 text-white w-64 min-h-screen"
         }
         // className={`${isMobile ? ``}`}
-        style={{ marginTop: "4.5rem" }}
+        style={{ marginTop: "4.2rem" }}
       >
         <ul className="pt-5">
           <Link href="/forcoins" onClick={() => toggleOut()}>

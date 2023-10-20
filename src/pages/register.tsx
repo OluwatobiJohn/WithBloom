@@ -5,11 +5,30 @@ import Link from "next/link";
 import usePasswordVisibility from "@/helpers/utils";
 import useAuth from "@/hooks/useAuth";
 import Spinner from "../components/Spinner";
+import useFieldValidation from "@/helpers/validations";
+import { toast } from "react-toastify";
 
 const Register: React.FC = () => {
   const { passwordVisible, togglePasswordVisibility } = usePasswordVisibility();
+  const { validateEmail, validatePassword } = useFieldValidation();
   const { password, setPassword, email, setEmail, loading, registerUser } =
     useAuth();
+
+  const handleRegister = async (email: string, password: string) => {
+    if (!validateEmail(email)) {
+      toast.error("Please enter a valid email address");
+    } else if (!validatePassword(password)) {
+      if (password.length < 6) {
+        toast.error("Password must be at least 6 characters long");
+      } else {
+        toast.error(
+          "Password must contain letters, numbers, and a special character."
+        );
+      }
+    } else {
+      registerUser(email, password);
+    }
+  };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -89,7 +108,7 @@ const Register: React.FC = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     console.log(email, password);
-                    registerUser(email, password);
+                    handleRegister(email, password);
                   }}
                 >
                   {loading ? <Spinner /> : "Sign Up"}
