@@ -19,4 +19,4 @@ yarn cypress:open
 
 Live url:
 
-https://withbloomtobi.netlify.app/forexchange
+https://withbloomtobi.netlify.app/
