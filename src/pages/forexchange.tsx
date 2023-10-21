@@ -24,7 +24,8 @@ const ForExchange: React.FC = () => {
     if (fromCoin in exchangeRates && toCoin in exchangeRates) {
       const rateFrom = exchangeRates[fromCoin].rate;
       const rateTo = exchangeRates[toCoin].rate;
-      const equivalentValue = (amount / parseFloat(rateFrom)) * parseFloat(rateTo);
+      const equivalentValue =
+        (amount / parseFloat(rateFrom)) * parseFloat(rateTo);
       console.log(equivalentValue);
       setResult(equivalentValue);
     } else {
@@ -62,7 +63,7 @@ const ForExchange: React.FC = () => {
             <div className="flex flex-col justify-center items-center">
               <h2>Calculated Rate</h2>
               <div className="text-2xl md:text-3xl font-bold my-8 overflow-x-auto">
-                {Number(result).toFixed(8)}
+                {result !== null ? Number(result).toFixed(8) : "0"}
               </div>
             </div>
             <div className="mb-4">

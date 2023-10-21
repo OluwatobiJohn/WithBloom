@@ -7,14 +7,16 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   // Check if the current page is the login page.
   const isLoginPage = pathname === "/login";
   const isRegisterPage = pathname === "/register";
   const isIndexPage = pathname === "/";
+  const validRoutes = ["/", "/login", "/register", "/forcoins", "/forexchange"];
+  const isPathValid = validRoutes.includes(pathname);
 
-  return isLoginPage || isRegisterPage || isIndexPage ? (
+  return isLoginPage || isRegisterPage || isIndexPage || !isPathValid ? (
     <>
       <ToastContainer /> <Component {...pageProps} />
     </>
